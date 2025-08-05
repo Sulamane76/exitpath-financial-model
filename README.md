@@ -1,2 +1,1 @@
-# exitpath-financial-model
-EP Pro Forma
+# Exit Path Financial Model
