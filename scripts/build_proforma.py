@@ -12,9 +12,12 @@ go_fee_pct = 0.015
 deal_size = 100_000_000
 
 for scenario, cfg in scenarios.items():
-    operator_customers = np.linspace(cfg['operator_start'],
-                                     cfg['operator_end_2025'],
-                                     len(years))
+    operator_customers = np.linspace(
+        cfg['operator_start'],
+        cfg['operator_end_2025'],
+        len(years)
+    )
+    
     market_fit_arr = operator_customers * market_price
     company_fit_arr = operator_customers * np.array(cfg['graduation_rate']) * company_price
     ready_arr = np.array(cfg['ready_customers']) * ready_price
@@ -32,7 +35,9 @@ for scenario, cfg in scenarios.items():
         'Transaction Revenue': transaction_rev.round(0),
         'Investor Services': investor_services,
         'Investor Licenses': investor_licenses,
-        'Total Revenue': total_r_
+        'Total Revenue': total_rev.round(0)
+    })
 
-
-
+    output_path = f'output/ExitPath_{scenario}_Case.xlsx'
+    df.to_excel(output_path, index=False)
+    print(f'Generated {output_path}')
